@@ -1,0 +1,21 @@
+#!/bin/sh
+#PBS -N cme213
+#PBS -q gpu
+#PBS -e cme213.err
+#PBS -o cme213.out
+#PBS -l nodes=1:ppn=24
+#PBS -V
+
+PBS_O_WORKDIR='/home/<YOUR SUID>/<YOUR DIRECTORY>'
+export PBS_O_WORKDIR
+
+echo The master node of this job is `hostname`
+echo The working directory is `echo $PBS_O_WORKDIR`
+echo This job runs on the following nodes:
+echo `cat $PBS_NODEFILE`
+echo
+echo Output from code
+echo ----------------
+
+cd $PBS_O_WORKDIR
+./main -gsb
